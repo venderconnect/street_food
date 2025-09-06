@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useProduct, useCreateReview } from '../../api/hooks';
+import Input from '../../components/ui/input';
+import Textarea from '../../components/ui/textarea';
+import Button from '../../components/ui/button';
 
 export default function ProductReviews() {
   const { id: productId } = useParams();
@@ -23,13 +26,13 @@ export default function ProductReviews() {
       <form onSubmit={onSubmit} className="space-y-3">
         <label className="block">
           <span className="text-sm">Rating (1–5)</span>
-          <input className="border p-2 w-full" type="number" min="1" max="5" value={rating} onChange={e=>setRating(e.target.value)}/>
+          <Input type="number" min="1" max="5" value={rating} onChange={e=>setRating(e.target.value)}/>
         </label>
         <label className="block">
           <span className="text-sm">Comment</span>
-          <textarea className="border p-2 w-full" rows={3} value={text} onChange={e=>setText(e.target.value)}/>
+          <Textarea rows={3} value={text} onChange={e=>setText(e.target.value)}/>
         </label>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded">Submit Review</button>
+        <Button variant="primary">Submit Review</Button>
       </form>
       {/* Once a list endpoint exists, render reviews below */}
     </div>

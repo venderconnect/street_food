@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useCreateGroupOrder } from '../../api/hooks';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../components/ui/input';
+import Button from '../../components/ui/button';
 
 export default function GroupOrderCreate() {
   const [productId,setProductId]=useState('');
@@ -15,8 +17,8 @@ export default function GroupOrderCreate() {
   }
 
   return (<form onSubmit={onSubmit} className="max-w-md mx-auto p-6 space-y-4">
-    <input className="border p-2 w-full" placeholder="Product ID" value={productId} onChange={e=>setProductId(e.target.value)} required/>
-    <input className="border p-2 w-full" type="number" min="1" value={quantity} onChange={e=>setQuantity(e.target.value)} required/>
-    <button disabled={isPending} className="bg-blue-600 text-white px-4 py-2 rounded">{isPending?'Creating...':'Create'}</button>
+    <Input placeholder="Product ID" value={productId} onChange={e=>setProductId(e.target.value)} required/>
+    <Input type="number" min="1" value={quantity} onChange={e=>setQuantity(e.target.value)} required/>
+    <Button disabled={isPending} variant="primary">{isPending?'Creating...':'Create'}</Button>
   </form>);
 }

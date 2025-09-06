@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { socket } from '../../socket';
 import { useJoinGroupOrder, useUpdateQuantity, useCloseGroupOrder } from '../../api/hooks';
+import Input from '../../components/ui/input';
+import Button from '../../components/ui/button';
 
 export default function GroupOrderJoin() {
   const { id } = useParams();
@@ -13,9 +15,6 @@ export default function GroupOrderJoin() {
   useEffect(() => {
     socket.connect();
     socket.emit('subscribe:order', id);
-    socket.on('order:update', () => {
-      // could invalidate queries here if we fetched the order
-    });
     return () => {
       socket.emit('unsubscribe:order', id);
       socket.disconnect();
@@ -26,14 +25,14 @@ export default function GroupOrderJoin() {
     <div className="p-6 space-y-4 max-w-md mx-auto">
       <h2 className="text-xl font-semibold">Join Group Order</h2>
       <div className="flex gap-2">
-        <input className="border p-2 w-full" type="number" min="1" value={qty} onChange={e=>setQty(Number(e.target.value))}/>
-        <button onClick={()=>join.mutate(qty)} className="bg-green-600 text-white px-4 py-2 rounded">Join/Add</button>
+        <Input type="number" min="1" value={qty} onChange={e=>setQty(Number(e.target.value))}/>
+        <Button onClick={()=>join.mutate(qty)} variant="primary">Join/Add</Button>
       </div>
       <div className="flex gap-2">
-        <input className="border p-2 w-full" type="number" min="1" value={qty} onChange={e=>setQty(Number(e.target.value))}/>
-        <button onClick={()=>updateQty.mutate(qty)} className="bg-blue-600 text-white px-4 py-2 rounded">Update My Qty</button>
+        <Input type="number" min="1" value={qty} onChange={e=>setQty(Number(e.target.value))}/>
+        <Button onClick={()=>updateQty.mutate(qty)} variant="primary">Update My Qty</Button>
       </div>
-      <button onClick={()=>close.mutate()} className="bg-gray-800 text-white px-4 py-2 rounded">Close Order</button>
+      <Button onClick={()=>close.mutate()} variant="ghost">Close Order</Button>
     </div>
   );
 }
