@@ -10,9 +10,9 @@ build/
 *.log
 
 # Env
-.env
-.env.local
-.env.*.local
+# .env
+# .env.local
+# .env.*.local
 
 # Editor/OS
 .DS_Store
