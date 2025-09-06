@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+:root{
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --primary: #3490ff;
+  --radius: 0.5rem;
+}
+
+/* Tailwind preflight is present; add app-level utilities and defaults */
+html,body,#root{height:100%;}
+body{
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* container */
+.app-container{max-width:1100px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+
+/* subtle card */
+.card-surface{background:var(--surface);border:1px solid rgba(15,23,42,0.04);border-radius:var(--radius);box-shadow:0 8px 24px rgba(15,23,42,0.04);}
+
+/* input focus */
+.input-focus:focus{outline:none;box-shadow:0 6px 24px rgba(52,144,255,0.12);border-color:var(--primary)}
+
+/* nice transition */
+.smooth{transition:all 180ms var(--tw-transition-timing-function, cubic-bezier(.4,0,.2,1));}
+
+/* responsive grid helpers */
+.grid-cards{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:1rem}
+@media(min-width:640px){.grid-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1024px){.grid-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* small utilities */
+.text-muted{color:var(--muted)}
+
+/* subtle animations */
+.fade-in{animation:fadeIn .22s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
