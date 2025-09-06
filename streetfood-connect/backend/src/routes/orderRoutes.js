@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import { createGroupOrder, joinGroupOrder, updateQuantity, closeGroupOrder, myOrders } from '../controllers/orderController.js';
+const router = Router();
+router.post('/', requireAuth, createGroupOrder);
+router.post('/:id/join', requireAuth, joinGroupOrder);
+router.patch('/:id/quantity', requireAuth, updateQuantity);
+router.post('/:id/close', requireAuth, closeGroupOrder);
+router.get('/mine', requireAuth, myOrders);
+export default router;
